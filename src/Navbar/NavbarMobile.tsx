@@ -35,9 +35,11 @@ const menuLinks = [
     timeline.current.fromTo(".menu-background",   {
       xPercent: 50,
       yPercent: -50,
-      scale: 0.25
+      scale: 0.25,
+      autoAlpha:1
     },
     {
+      autoAlpha:1,
       xPercent: 0,
       yPercent: 0,
       scale: 1.5,
