@@ -1,0 +1,12 @@
+.brand-logo img {
+    width: auto
+}
+
+.brand-logo img:first-of-type {
+    height: calc(var(--fs-root) * 3.45);
+    margin-right: calc(var(--fs-root) * 1.25)
+}
+
+.brand-logo img:last-of-type {
+    height: calc(var(--fs-root) * 2.5)
+}

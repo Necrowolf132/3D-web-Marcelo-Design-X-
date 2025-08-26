@@ -1,0 +1,42 @@
+#gradients-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100vw;
+    height: 100vw;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    place-items: center;
+    overflow: hidden
+}
+
+#gradients-background div {
+    width: 30vw;
+    height: 30vw;
+    position: relative
+}
+
+#gradients-background div span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 100%;
+    min-height: 100%;
+    display: block;
+    border-radius: 50%;
+    background: rgba(170,127,44,.59);
+    filter: blur(20vw);
+    -webkit-filter: blur(20vw);
+    opacity: 0
+}
+@media (orientation: portrait) {
+    #gradients-background {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,251 @@
+#net-section {
+    width: 100%;
+    height: 150vh;
+    margin-top: -.5rem;
+    position: relative
+}
+
+#net-section .net-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+#net-section .net {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: calc(var(--fs-root) * 50);
+    height: calc(var(--fs-root) * 50);
+    object-fit: cover;
+    pointer-events: none
+}
+
+#net-section video {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none
+}
+
+#net-section .split {
+    color: #fff;
+    text-align: center;
+    font-size: calc(var(--fs-root) * 7.93);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.2!important
+}
+
+#net-section .cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    bottom: calc(var(--fs-root) * 5);
+    left: var(--horizontal-padding)
+}
+
+#net-section .cta p {
+    color: #a1a1a1;
+    font-size: calc(var(--fs-root) * 1.25);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: calc(var(--fs-root))
+}
+
+#net-section .cta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dcc562;
+    text-transform: capitalize;
+    color: #1e1d1b;
+    font-size: var(--fs-root);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    padding: calc(var(--fs-root) * .75) calc(var(--fs-root) * 1.75);
+    border-radius: calc(var(--fs-root) * .3125)
+}
+
+#net-section .cta a img {
+    width: calc(var(--fs-root) * 1);
+    height: calc(var(--fs-root) * 1);
+    margin-right: calc(var(--fs-root))
+}
+
+@media (orientation: portrait) and (min-width: 481px) {
+     #net-section {
+        width: 100%;
+        /*height: initial;*/
+        height: 150vh;
+        position: relative
+    }
+
+    #net-section .net-wrapper {
+        width: 100%;
+        height: initial;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: static;
+        top: unset;
+        left: unset
+    }
+
+    #net-section .split {
+        color: #fff;
+        text-align: center;
+        font-size: calc(var(--fs-root) * 2.1);
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.25;
+        width: 100%;
+        position: absolute;
+        top: 42.5vw;
+        left: 50%;
+        transform: translate(-50%,-50%)
+    }
+
+    #net-section .cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+        position: static;
+        bottom: unset;
+        left: unset;
+        margin-top: calc(var(--fs-root) * 1)
+    }
+
+    #net-section .cta p {
+        color: #a1a1a1;
+        font-size: calc(var(--fs-root) * 1.25 * .75);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: calc(var(--fs-root))
+    }
+
+    #net-section .cta a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #dcc562;
+        text-transform: capitalize;
+        color: #1e1d1b;
+        font-size: calc(var(--fs-root) * .75);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.25;
+        padding: calc(var(--fs-root) * .75 * .75) calc(var(--fs-root) * 1.75 * .75);
+        border-radius: calc(var(--fs-root) * .3125)
+    }
+
+    #net-section .cta a img {
+        width: calc(var(--fs-root) * 1);
+        height: calc(var(--fs-root) * 1);
+        margin-right: calc(var(--fs-root))
+    }
+}
+
+@media (orientation: portrait) {
+        #net-section {
+        width: 100%;
+        /*height: initial;*/
+        height: 150vh;
+        position: relative
+    }
+
+    #net-section .net-wrapper {
+        width: 100%;
+        height: initial;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: static;
+        top: unset;
+        left: unset
+    }
+
+    #net-section .net {
+        display: none;
+        opacity: 0;
+        visibility: hidden
+    }
+
+    #net-section video {
+        opacity: 1;
+        visibility: visible;
+        display: block;
+        width: 85vw;
+        height: 85vw;
+        position: static
+    }
+
+    #net-section .split {
+        color: #fff;
+        text-align: center;
+        font-size: calc(var(--fs-root) * 2.1);
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.25;
+        width: 100%;
+        position: absolute;
+        top: 42.5vw;
+        left: 50%;
+        transform: translate(-50%,-50%)
+    }
+
+    #net-section .cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+        position: static;
+        bottom: unset;
+        left: unset;
+        margin-top: calc(var(--fs-root) * 3)
+    }
+
+    #net-section .cta p {
+        color: #a1a1a1;
+        font-size: calc(var(--fs-root) * 1.25 * .75);
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: calc(var(--fs-root))
+    }
+
+    #net-section .cta a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #dcc562;
+        text-transform: capitalize;
+        color: #1e1d1b;
+        font-size: calc(var(--fs-root) * .75);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.25;
+        padding: calc(var(--fs-root) * .75 * .75) calc(var(--fs-root) * 1.75 * .75);
+        border-radius: calc(var(--fs-root) * .3125)
+    }
+
+    #net-section .cta a img {
+        width: calc(var(--fs-root) * 1);
+        height: calc(var(--fs-root) * 1);
+        margin-right: calc(var(--fs-root))
+    }
+}

@@ -1,0 +1,68 @@
+# deploy.yml
+
+# 1. Nombre del flujo de trabajo que aparecerá en la pestaña "Actions" de GitHub.
+name: Deploy to GitHub Pages
+
+# 2. El disparador (Trigger): Cuándo se debe ejecutar este flujo.
+on:
+  # Se ejecuta automáticamente en cada 'push' a la rama 'main'.
+  # Esto cubre cuando haces un commit directo o cuando fusionas un pull request.
+  push:
+    branches: ["main"]
+  # También te permite ejecutarlo manualmente desde la pestaña Actions si lo necesitas.
+  workflow_dispatch:
+
+# 3. Permisos: Le damos al flujo de trabajo los permisos necesarios para escribir en GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 4. Los trabajos (Jobs) que se van a ejecutar. En este caso, solo uno: 'deploy'.
+jobs:
+  deploy:
+    # 5. Entorno: Configuración específica para el despliegue en GitHub Pages.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # URL final de la página
+
+    # 6. Máquina Virtual: Elige en qué sistema operativo se ejecutará el trabajo.
+    runs-on: ubuntu-latest
+
+    # 7. Los pasos (Steps): Las acciones secuenciales que se ejecutarán.
+    steps:
+      # Paso 1: Descargar tu código
+      # 'actions/checkout' es una acción oficial que descarga tu repositorio a la máquina virtual.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Paso 2: Configurar el entorno de Node.js
+      # 'actions/setup-node' instala Node.js para que podamos usar 'npm'.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Puedes cambiar esto a tu versión de Node preferida
+
+      # Paso 3: Instalar las dependencias
+      # 'npm ci' es generalmente más rápido y confiable para CI/CD que 'npm install'.
+      - name: Install dependencies
+        run: npm ci
+
+      # Paso 4: Construir el proyecto
+      # ¡Aquí es donde se ejecuta tu comando 'npm run build'!
+      - name: Build project
+        run: npm run build
+
+      # Paso 5: Preparar el artefacto de la página
+      # 'actions/upload-pages-artifact' toma la carpeta de build (tu 'dist')
+      # y la empaqueta de la forma correcta para GitHub Pages.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist" # Asegúrate de que esta sea tu carpeta de salida del build
+
+      # Paso 6: Desplegar en GitHub Pages
+      # 'actions/deploy-pages' toma el artefacto subido y lo publica.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
