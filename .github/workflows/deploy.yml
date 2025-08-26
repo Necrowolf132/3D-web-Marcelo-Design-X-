@@ -41,7 +41,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18 # Puedes cambiar esto a tu versión de Node preferida
+          node-version: 20 # Puedes cambiar esto a tu versión de Node preferida
 
       # Paso 3: Instalar las dependencias
       # 'npm ci' es generalmente más rápido y confiable para CI/CD que 'npm install'.
