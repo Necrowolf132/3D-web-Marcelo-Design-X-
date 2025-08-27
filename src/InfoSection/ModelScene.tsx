@@ -2,6 +2,7 @@ import { useRef, useMemo, useEffect , type FC, type ReactNode} from 'react';
 import { Canvas, useFrame, type ThreeElements } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useGLTF, Environment, ContactShadows } from '@react-three/drei';
+import { useResponsiveSettings } from '../hooks/useResponsiveSettings.ts'
 import * as THREE from 'three';
 
 
@@ -42,6 +43,7 @@ function Model(props: ModelProps) {
 
 function Experience({ animationProxy }:ModelSceneProps):ReactNode  {
   const modelRef = useRef<THREE.Group>(null!);
+  const settings = useResponsiveSettings()
 
   useFrame((state, delta) => {
     const { viewport } = state;
@@ -72,21 +74,21 @@ function Experience({ animationProxy }:ModelSceneProps):ReactNode  {
       <group ref={modelRef}>
         <Model />
       </group>
-      <EffectComposer>
-        <Bloom 
-          intensity={20} 
-          luminanceThreshold={0} 
+      {!settings.r3f.disableBloom && (<EffectComposer>
+        <Bloom
+          intensity={20}
+          luminanceThreshold={0}
           luminanceSmoothing={50}
         />
-      </EffectComposer>
+      </EffectComposer>)}
     </>
   );
 }
 const ModelScene: FC<ModelSceneProps> = ({ animationProxy }) => {
-
+  const settings = useResponsiveSettings()
 
   return (
-    <Canvas  camera={{ position: [0, 0.3, 2.6], fov: 65 }}
+    <Canvas  dpr={[1, settings.r3f.dpr]} camera={{ position: [0, 0.3, 2.6], fov: 65 }}
       gl={{ 
         toneMapping: THREE.ACESFilmicToneMapping,
         outputColorSpace: THREE.SRGBColorSpace 

@@ -8,7 +8,8 @@ import { useGSAP } from '@gsap/react';
 import { NavbarDesktop, NavbarMobile } from "./Navbar"
 import InfoSection from './InfoSection';
 import GradientsBackgound from './Effects/GradientsBackground.tsx';
-import { useGeneralContext } from './context/GeneralContext.tsx'; 
+import { useGeneralContext } from './context/GeneralContext.tsx';
+import { useResponsiveSettings } from './hooks/useResponsiveSettings.ts'
 import HeroSection from "./HeroHeader";
 import NetSection from './NetSection';
 import Logo from "./Logo"
@@ -17,14 +18,15 @@ import Logo from "./Logo"
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger, ScrollToPlugin,SplitText);
 
 function App() {
+   const settings = useResponsiveSettings();
   const { setMainScroller, loaded } = useGeneralContext()
   useGSAP(() => {
 
     const smoother = ScrollSmoother.create({
       wrapper: '#smooth-wrapper',
       content: '#smooth-content',
-      smooth: 2.2, 
-      smoothTouch: 2.2, 
+      smooth: settings.smoother.smooth,
+      smoothTouch: settings.smoother.smoothTouch,
       effects: true,
       normalizeScroll: true, 
     });

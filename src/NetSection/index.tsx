@@ -4,14 +4,16 @@ import { useGSAP } from '@gsap/react';
 import * as THREE from 'three';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { useMediaQuery } from 'react-responsive';
 import './netSection.css';
 
 
 function NetSection() {
-      const sectionRef = useRef<HTMLElement>(null!);
-  const wrapperRef = useRef<HTMLDivElement>(null!);
-  const canvasRef = useRef<HTMLCanvasElement>(null!);
-  const videoRef = useRef<HTMLVideoElement>(null!);
+    const esDesktopOEscritorio = useMediaQuery({ minWidth: 992 });
+    const sectionRef = useRef<HTMLElement>(null!);
+    const wrapperRef = useRef<HTMLDivElement>(null!);
+    const canvasRef = useRef<HTMLCanvasElement>(null!);
+    const videoRef = useRef<HTMLVideoElement>(null!);
 
 
  useGSAP(() => {
@@ -125,6 +127,7 @@ function NetSection() {
         scrub: true,
     }
        })*/
+     if (esDesktopOEscritorio) {
     gsap.fromTo(".logo-wrapper", {
         //autoAlpha: 1,
         autoAlpha: 0,
@@ -143,9 +146,13 @@ function NetSection() {
         //markers:true,
         scrub: true,
     }
-    })
-    const masterTimeline = gsap.timeline();
-       gsap.fromTo(".cta", {
+    })     
+     }
+    
+     const masterTimeline = gsap.timeline();
+     
+     if (esDesktopOEscritorio) {
+    gsap.fromTo(".cta", {
         x: "-25vw",
     }, {
         ease: 'expo.out',
@@ -159,7 +166,8 @@ function NetSection() {
         //markers:true,
         scrub: true,
     }
-       })
+       })   
+     }
       const split = new SplitText(".split", { type: "chars" });
     masterTimeline.fromTo(canvas, 
       {

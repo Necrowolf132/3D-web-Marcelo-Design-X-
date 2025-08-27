@@ -4,11 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useMediaQuery } from 'react-responsive';
 import { useGSAP } from '@gsap/react';
 import { useGeneralContext } from '../context/GeneralContext.tsx'; 
-
+import { useResponsiveSettings } from '../hooks/useResponsiveSettings.ts'
 
 import './HeroSection.css';
 
 function HeroSection() {
+  const settings = useResponsiveSettings();
   const {loaded, setLoaded} = useGeneralContext()
   const esDesktopOEscritorio = useMediaQuery({ minWidth: 481 });
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -33,10 +34,11 @@ function HeroSection() {
     const loadedImages: HTMLImageElement[] = [];
     let loadedCount = 0;
     setImageCount(esDesktopOEscritorio ? 254 : 237)
-    const currentFrame = (index: number) => 
+    /*const currentFrame = (index: number) => 
       esDesktopOEscritorio
         ? `/images/last_desktop_sequence/swanson__${(index).toString().padStart(5, '0')}.jpg`
-        : `/images/last_mobile_sequence/swanson_V__${(index).toString().padStart(5, '0')}.jpg`;
+        : `/images/last_mobile_sequence/swanson_V__${(index).toString().padStart(5, '0')}.jpg`;*/
+    const currentFrame = settings.imageSequencePath;
 
     for (let i = 0; i < imageCount; i++) {
       const img = new Image();
